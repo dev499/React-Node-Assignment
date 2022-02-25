@@ -1,17 +1,16 @@
 const express = require("express");
 const { Student } = require("../db/student");
 const router = new express.Router();
-const validator = require("validator");
 
 // API for signup
 router.post("/signup", async (req, res) => {
   const student = new Student(req.body);
   console.log(student);
   try {
-    await user.save();
+    await student.save();
     res.status(201).send({ student });
   } catch (e) {
-    res.status(e);
+    res.status(400);
   }
 });
 
@@ -20,7 +19,7 @@ router.post("/login", async (req, res) => {
   try {
     const student = await Student.findOne({ email: req.body.email });
     if (!student) {
-      res.send("Please enter valid creds");
+      res.send("Please enter valid credentials");
     } else {
       const student = await Student.findOne({ Password: req.body.Password });
       if (!student) {
@@ -66,7 +65,7 @@ router.patch("/update", async (req, res) => {
       if (!student) {
         res.send("Please enter valid cred");
       } else {
-        await student.updateOne({ Phone: req.body.Phone });
+        await student.updateOne({ Firstname: req.body.Firstname });
         res.send("student details updated");
       }
     }

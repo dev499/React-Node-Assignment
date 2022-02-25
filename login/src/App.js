@@ -1,6 +1,8 @@
 import { useState } from "react";
 import "./App.css";
 import { validateName } from "./Helper";
+// import 'react-phone-number-input/style.css'
+// import PhoneInput from 'react-phone-number-input'
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 //command to add toasts
@@ -18,7 +20,7 @@ const App = () => {
       return;
     } else if (num.length < 10) {
       e.preventDefault();
-      toast("Enter Valid Number");
+      toast("Enter Valid Phone Number");
     } else {
       alert(`Your Name is ${name} and Number is ${num}`);
     }
@@ -49,12 +51,12 @@ const App = () => {
               Enter Your Number
             </label>
             <input
-              type="number"
+              type='number'
               class="form-control"
               id="exampleInputPassword1"
               placeholder="Enter Your Number"
               value={num}
-              onChange={(e) => setNum(e.target.value)}
+              onChange={(event) => setNum(event.target.value)}
             />
           </div>
           <button type="submit" class="btn btn-primary">
